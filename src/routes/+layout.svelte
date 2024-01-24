@@ -2,4 +2,7 @@
 	import '../app.pcss';
 </script>
 
-<slot />
+<div class="w-full h-full">
+	<slot />
+</div>
+

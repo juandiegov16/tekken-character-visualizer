@@ -1,8 +1,18 @@
 import { supabase } from '$lib/supabaseClient';
 
-export async function load() {
-	const { data } = await supabase.from('characters').select();
+export const load = async () => {
+	const { data: characterData } = await supabase
+		.from('characters')
+		.select(
+			`
+    *,
+    appearances (
+      *
+    )
+  `
+		)
+		.order('id');
 	return {
-		characters: data ?? []
+		characters: characterData ?? []
 	};
-}
+};
